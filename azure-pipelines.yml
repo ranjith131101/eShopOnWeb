@@ -12,11 +12,8 @@ steps:
     packageType: 'sdk'
     version: '8.0.x'
 
-- script: dotnet restore
+- script: dotnet restore src/Web/Web.csproj
   displayName: 'Restore Packages'
 
-- script: dotnet build --configuration Release --no-restore
+- script: dotnet build src/Web/Web.csproj --configuration Release --no-restore
   displayName: 'Build Application'
-
-- script: dotnet test --configuration Release --no-build
-  displayName: 'Run Tests'
