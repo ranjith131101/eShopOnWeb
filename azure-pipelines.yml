@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+- task: UseDotNet@2
+  displayName: 'Install .NET SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+
+- script: dotnet restore
+  displayName: 'Restore Packages'
+
+- script: dotnet build --configuration Release --no-restore
+  displayName: 'Build Application'
+
+- script: dotnet test --configuration Release --no-build
+  displayName: 'Run Tests'
